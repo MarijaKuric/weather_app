@@ -7,18 +7,20 @@
 }
 
 body {
-    background: #222;
+    background: #1c1c3c;
 }
 
 .card {
     width: 90%;
     max-width: 470px;
-    background: linear-gradient(135deg, #00feba, #5b548a);
+    background: rgba(0, 123, 255, 0.2);
     color: #fff;
     margin: 100px auto 0;
     border-radius: 20px;
     padding: 40px 35px;
     text-align: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+    backdrop-filter: blur(10px);
 }
 
 .search {
@@ -31,14 +33,20 @@ body {
 .search input {
     border: 0;
     outline: 0;
-    background: #ebfffc;
-    color: #000; /* Poboljšana vidljivost teksta u input polju */
+    background: rgba(255, 255, 255, 0.3);
+    color: #fff;
     padding: 10px 25px;
     height: 60px;
     border-radius: 30px;
     flex: 1;
     margin-right: 16px;
     font-size: 18px;
+    backdrop-filter: blur(5px);
+}
+
+.search input::placeholder {
+    color: #000;
+    opacity: 0.7;
 }
 
 .search button {
@@ -52,12 +60,12 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0; /* Sprečava deformaciju dugmeta */
+    flex-shrink: 0;
 }
 
 .search button img {
     width: 24px;
-    height: 24px; /* Dodano za pravilne proporcije slike */
+    height: 24px;
 }
 
 .weather-icon {
@@ -110,6 +118,7 @@ body {
     font-size: 14px;
     margin-top: 10px;
     display: none;
+    color: #ff6b6b;
 }
 
 /* Stilovi za mobilne uređaje (480px ili manje) */
@@ -117,11 +126,12 @@ body {
     .search input {
         font-size: 16px; /* Smanjen font za manji ekran */
         padding: 8px 20px; /* Prilagođen padding za manji ekran */
+        height: 50px; /* Smanjena visina inputa */
     }
 
     .search button {
-        width: 50px;
-        height: 50px;
+        width: 50px; /* Smanjena širina dugmeta */
+        height: 50px; /* Smanjena visina dugmeta */
     }
 
     .weather h1 {
@@ -133,19 +143,23 @@ body {
     }
 
     .details {
-        flex-direction: column; /* Stavljanje detalja jedan ispod drugog */
+        flex-direction: column; /* Detalji jedan ispod drugog */
         align-items: center;
     }
 
     .details .col {
         margin-bottom: 20px;
     }
+
+    .weather-icon {
+        width: 150px; /* Smanjena ikona za manje ekrane */
+    }
 }
 
 /* Stilovi za tablete (768px ili manje) */
 @media only screen and (max-width: 768px) {
     .search input {
-        font-size: 18px; /* Malo veći font za tablete */
+        font-size: 18px;
         padding: 10px 22px;
     }
 
@@ -160,6 +174,10 @@ body {
 
     .weather h2 {
         font-size: 40px;
+    }
+
+    .weather-icon {
+        width: 160px; /* Blago smanjena ikona za tablete */
     }
 }
 
@@ -181,5 +199,9 @@ body {
 
     .weather h2 {
         font-size: 45px;
+    }
+
+    .weather-icon {
+        width: 170px;
     }
 }
