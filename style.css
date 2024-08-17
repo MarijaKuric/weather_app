@@ -39,7 +39,7 @@ body {
     height: 60px;
     border-radius: 30px;
     flex: 1;
-    margin-right: 16px;
+    margin-right: 10px; /* Smanjite marginu */
     font-size: 18px;
     backdrop-filter: blur(5px);
 }
@@ -124,14 +124,23 @@ body {
 /* Stilovi za mobilne uređaje (480px ili manje) */
 @media only screen and (max-width: 480px) {
     .search input {
-        font-size: 16px; /* Smanjen font za manji ekran */
-        padding: 8px 20px; /* Prilagođen padding za manji ekran */
+        font-size: 16px; 
+        padding: 8px 15px; /* Smanjena padding */
         height: 50px; /* Smanjena visina inputa */
     }
 
     .search button {
-        width: 50px; /* Smanjena širina dugmeta */
-        height: 50px; /* Smanjena visina dugmeta */
+        width: 50px; 
+        height: 50px; 
+    }
+
+    .search {
+        flex-direction: column; /* Tražilica postaje vertikalna */
+    }
+
+    .search input, .search button {
+        width: 100%; /* Tražilica i gumb zauzimaju punu širinu */
+        margin: 10px 0; /* Margina između inputa i gumba */
     }
 
     .weather h1 {
@@ -143,7 +152,7 @@ body {
     }
 
     .details {
-        flex-direction: column; /* Detalji jedan ispod drugog */
+        flex-direction: column; 
         align-items: center;
     }
 
@@ -152,7 +161,7 @@ body {
     }
 
     .weather-icon {
-        width: 150px; /* Smanjena ikona za manje ekrane */
+        width: 150px;
     }
 }
 
@@ -160,7 +169,7 @@ body {
 @media only screen and (max-width: 768px) {
     .search input {
         font-size: 18px;
-        padding: 10px 22px;
+        padding: 10px 20px;
     }
 
     .search button {
@@ -177,7 +186,7 @@ body {
     }
 
     .weather-icon {
-        width: 160px; /* Blago smanjena ikona za tablete */
+        width: 160px;
     }
 }
 
