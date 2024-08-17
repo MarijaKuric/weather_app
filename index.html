@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather app</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+<div class="card">
+    <div class="search">
+        <input type="text" placeholder="unesite naziv grada" spellcheck="false">
+        <button><img src="weather slike/search.png"></button>
+    </div>
+    <div class="error" style="display: none;">
+        <p>Invalid city name</p>
+    </div>
+    <div class="weather" style="display: none;">
+        <img src="weather slike/rainy-day (1).png" class="weather-icon">
+        <h1 class="temp">22°c</h1>
+        <h2 class="city">New York</h2>
+        <div class="details">
+            <div class="col">
+                <img src="weather slike/vlaga zraka2.png">
+                <div>
+                    <p class="humidity">50%</p>
+                    <p>Vlaga zraka</p>
+                </div>
+            </div>
+            <div class="col">
+                <img src="weather slike/vjetar1.png">
+                <div>
+                    <p class="wind">15 km/h</p>
+                    <p>Vjetar</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const apiKey = "362f1e17fa7d689d2562e57bb1ecb707";
+    const apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=";
+
+    const searchBox = document.querySelector(".search input");
+    const searchBtn = document.querySelector(".search button");
+    const weatherIcon = document.querySelector(".weather-icon");
+
+    async function checkWeather(city) {
+        const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
+
+        if (response.status == 404) {
+            document.querySelector(".error").style.display = "block";
+            document.querySelector(".weather").style.display = "none";
+        } else {
+            var data = await response.json();
+
+            // Pretvorba temperature iz kelvina u celzijuse
+            let tempInCelsius = Math.round(data.main.temp - 273.15);
+            
+            document.querySelector(".city").innerHTML = data.name;
+            document.querySelector(".temp").innerHTML = tempInCelsius + "°c";
+            document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
+            document.querySelector(".wind").innerHTML = data.wind.speed + " km/h";
+
+            if (data.weather[0].main == "Clouds") {
+                weatherIcon.src = "weather slike/oblačno.png";
+            } else if (data.weather[0].main == "Clear") {
+                weatherIcon.src = "weather slike/sun.png";
+            } else if (data.weather[0].main == "Rain") {
+                weatherIcon.src = "weather slike/rainy-day (1).png";
+            } else if (data.weather[0].main == "Mist") {
+                weatherIcon.src = "weather slike/izmaglicamist.png";
+            } else if (data.weather[0].main == "Snow") {
+                weatherIcon.src = "weather slike/snow.png";
+            }
+
+            document.querySelector(".weather").style.display = "block";
+            document.querySelector(".error").style.display = "none";
+        }
+    }
+
+    // Dodavanje event listenera na gumb za pretragu
+    searchBtn.addEventListener("click", () => {
+        checkWeather(searchBox.value);
+    });
+
+    // Dodavanje event listenera za pritisak tipke "Enter"
+    searchBox.addEventListener("keypress", (event) => {
+        if (event.key === "Enter") {
+            checkWeather(searchBox.value);
+        }
+    });
+</script>
+
+</body>
+</html>
