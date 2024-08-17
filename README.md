@@ -2,4 +2,6 @@ This weather app allows users to quickly and easily get current weather informat
 
 QR CODE
 
-![my-qr-code-2-1024](https://github.com/user-attachments/assets/481d3a6d-0938-445c-8271-71688c684d0b)
+![image](https://github.com/user-attachments/assets/0c031c9e-9f13-49b3-8b32-177dc3f87561)
+
+
